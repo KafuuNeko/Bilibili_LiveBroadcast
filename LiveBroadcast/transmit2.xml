@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="transmit2" default="all">
+  
+  
+  <property file="transmit2.properties"/>
+  <!-- 如果不需要测试编译，请取消注释以下属性 -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- 编译器选项 -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*.yarb/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.egg"/>
+    <include name="*.jar"/>
+    <include name="*.ear"/>
+    <include name="*.ane"/>
+    <include name="*.klib"/>
+    <include name="*.swc"/>
+    <include name="*.war"/>
+    <include name="*.zip"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- JDK 定义 -->
+  
+  <property name="jdk.bin.11" value="${jdk.home.11}/bin"/>
+  <path id="jdk.classpath.11">
+    <fileset dir="${jdk.home.11}">
+      <include name="../jdk-11.0.2!/java.base"/>
+      <include name="../jdk-11.0.2!/java.compiler"/>
+      <include name="../jdk-11.0.2!/java.datatransfer"/>
+      <include name="../jdk-11.0.2!/java.desktop"/>
+      <include name="../jdk-11.0.2!/java.instrument"/>
+      <include name="../jdk-11.0.2!/java.logging"/>
+      <include name="../jdk-11.0.2!/java.management"/>
+      <include name="../jdk-11.0.2!/java.management.rmi"/>
+      <include name="../jdk-11.0.2!/java.naming"/>
+      <include name="../jdk-11.0.2!/java.net.http"/>
+      <include name="../jdk-11.0.2!/java.prefs"/>
+      <include name="../jdk-11.0.2!/java.rmi"/>
+      <include name="../jdk-11.0.2!/java.scripting"/>
+      <include name="../jdk-11.0.2!/java.se"/>
+      <include name="../jdk-11.0.2!/java.security.jgss"/>
+      <include name="../jdk-11.0.2!/java.security.sasl"/>
+      <include name="../jdk-11.0.2!/java.smartcardio"/>
+      <include name="../jdk-11.0.2!/java.sql"/>
+      <include name="../jdk-11.0.2!/java.sql.rowset"/>
+      <include name="../jdk-11.0.2!/java.transaction.xa"/>
+      <include name="../jdk-11.0.2!/java.xml"/>
+      <include name="../jdk-11.0.2!/java.xml.crypto"/>
+      <include name="../jdk-11.0.2!/jdk.accessibility"/>
+      <include name="../jdk-11.0.2!/jdk.aot"/>
+      <include name="../jdk-11.0.2!/jdk.attach"/>
+      <include name="../jdk-11.0.2!/jdk.charsets"/>
+      <include name="../jdk-11.0.2!/jdk.compiler"/>
+      <include name="../jdk-11.0.2!/jdk.crypto.cryptoki"/>
+      <include name="../jdk-11.0.2!/jdk.crypto.ec"/>
+      <include name="../jdk-11.0.2!/jdk.crypto.mscapi"/>
+      <include name="../jdk-11.0.2!/jdk.dynalink"/>
+      <include name="../jdk-11.0.2!/jdk.editpad"/>
+      <include name="../jdk-11.0.2!/jdk.hotspot.agent"/>
+      <include name="../jdk-11.0.2!/jdk.httpserver"/>
+      <include name="../jdk-11.0.2!/jdk.internal.ed"/>
+      <include name="../jdk-11.0.2!/jdk.internal.jvmstat"/>
+      <include name="../jdk-11.0.2!/jdk.internal.le"/>
+      <include name="../jdk-11.0.2!/jdk.internal.opt"/>
+      <include name="../jdk-11.0.2!/jdk.internal.vm.ci"/>
+      <include name="../jdk-11.0.2!/jdk.internal.vm.compiler"/>
+      <include name="../jdk-11.0.2!/jdk.internal.vm.compiler.management"/>
+      <include name="../jdk-11.0.2!/jdk.jartool"/>
+      <include name="../jdk-11.0.2!/jdk.javadoc"/>
+      <include name="../jdk-11.0.2!/jdk.jcmd"/>
+      <include name="../jdk-11.0.2!/jdk.jconsole"/>
+      <include name="../jdk-11.0.2!/jdk.jdeps"/>
+      <include name="../jdk-11.0.2!/jdk.jdi"/>
+      <include name="../jdk-11.0.2!/jdk.jdwp.agent"/>
+      <include name="../jdk-11.0.2!/jdk.jfr"/>
+      <include name="../jdk-11.0.2!/jdk.jlink"/>
+      <include name="../jdk-11.0.2!/jdk.jshell"/>
+      <include name="../jdk-11.0.2!/jdk.jsobject"/>
+      <include name="../jdk-11.0.2!/jdk.jstatd"/>
+      <include name="../jdk-11.0.2!/jdk.localedata"/>
+      <include name="../jdk-11.0.2!/jdk.management"/>
+      <include name="../jdk-11.0.2!/jdk.management.agent"/>
+      <include name="../jdk-11.0.2!/jdk.management.jfr"/>
+      <include name="../jdk-11.0.2!/jdk.naming.dns"/>
+      <include name="../jdk-11.0.2!/jdk.naming.rmi"/>
+      <include name="../jdk-11.0.2!/jdk.net"/>
+      <include name="../jdk-11.0.2!/jdk.pack"/>
+      <include name="../jdk-11.0.2!/jdk.rmic"/>
+      <include name="../jdk-11.0.2!/jdk.scripting.nashorn"/>
+      <include name="../jdk-11.0.2!/jdk.scripting.nashorn.shell"/>
+      <include name="../jdk-11.0.2!/jdk.sctp"/>
+      <include name="../jdk-11.0.2!/jdk.security.auth"/>
+      <include name="../jdk-11.0.2!/jdk.security.jgss"/>
+      <include name="../jdk-11.0.2!/jdk.unsupported"/>
+      <include name="../jdk-11.0.2!/jdk.unsupported.desktop"/>
+      <include name="../jdk-11.0.2!/jdk.xml.dom"/>
+      <include name="../jdk-11.0.2!/jdk.zipfs"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.11}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.11}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.11"/>
+  
+  
+  <!-- 全局库 -->
+  <!-- 注册自定义的编译器任务定义 -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <fileset dir="${javac2.home}">
+      <include name="javac2.jar"/>
+      <include name="jdom.jar"/>
+      <include name="asm-all*.jar"/>
+      <include name="forms-*.jar"/>
+    </fileset>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- 模块 -->
+  
+  
+  <!-- 模块 Transmit2 -->
+  
+  <dirname property="module.transmit2.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.transmit2" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.transmit2" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.transmit2" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.transmit2" value="-encoding UTF-8 -source 11 -target 11 ${compiler.args}"/>
+  
+  <property name="transmit2.output.dir" value="${module.transmit2.basedir}/out/production/Transmit2"/>
+  <property name="transmit2.testoutput.dir" value="${module.transmit2.basedir}/out/test/Transmit2"/>
+  
+  <path id="transmit2.module.bootclasspath">
+    <!-- 路径被列入编译 bootclasspath -->
+  </path>
+  
+  <path id="transmit2.module.production.classpath">
+    <path refid="${module.jdk.classpath.transmit2}"/>
+    <pathelement location="${basedir}/lib/gson.jar"/>
+  </path>
+  
+  <path id="transmit2.runtime.production.module.classpath">
+    <pathelement location="${transmit2.output.dir}"/>
+    <pathelement location="${basedir}/lib/gson.jar"/>
+  </path>
+  
+  <path id="transmit2.module.classpath">
+    <path refid="${module.jdk.classpath.transmit2}"/>
+    <pathelement location="${transmit2.output.dir}"/>
+    <pathelement location="${basedir}/lib/gson.jar"/>
+  </path>
+  
+  <path id="transmit2.runtime.module.classpath">
+    <pathelement location="${transmit2.testoutput.dir}"/>
+    <pathelement location="${transmit2.output.dir}"/>
+    <pathelement location="${basedir}/lib/gson.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.transmit2">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.transmit2">
+    <patternset refid="excluded.from.module.transmit2"/>
+  </patternset>
+  
+  <path id="transmit2.module.sourcepath">
+    <dirset dir="${module.transmit2.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.transmit2" depends="compile.module.transmit2.production,compile.module.transmit2.tests" description="编辑 模块 Transmit2"/>
+  
+  <target name="compile.module.transmit2.production" depends="register.custom.compilers" description="编译 模块 Transmit2; 生产类">
+    <mkdir dir="${transmit2.output.dir}"/>
+    <javac2 destdir="${transmit2.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.transmit2}/javac">
+      <compilerarg line="${compiler.args.transmit2}"/>
+      <bootclasspath refid="transmit2.module.bootclasspath"/>
+      <classpath refid="transmit2.module.production.classpath"/>
+      <src refid="transmit2.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.transmit2"/>
+    </javac2>
+    
+    <copy todir="${transmit2.output.dir}">
+      <fileset dir="${module.transmit2.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.transmit2.tests" depends="register.custom.compilers,compile.module.transmit2.production" description="编译 模块 Transmit2; 测试类" unless="skip.tests"/>
+  
+  <target name="clean.module.transmit2" description="清理模块">
+    <delete dir="${transmit2.output.dir}"/>
+    <delete dir="${transmit2.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="构建初始化">
+    <!-- 在这个目标中执行任何构建初始化 -->
+  </target>
+  
+  <target name="clean" depends="clean.module.transmit2" description="清理所有"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.transmit2" description="构建所有模块"/>
+  
+  <target name="all" depends="build.modules" description="构建所有"/>
+</project>
